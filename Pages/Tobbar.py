@@ -4,7 +4,11 @@ import time
 
 class TopBarLocator:
     btnHome = "//a[@title= 'Home']"
-    
+
+class TopBarStrings:
+    LEADS = "Leads"
+
+
 class TopBarPage(CommonFunction):
     def navigate_to_tobbar(self, name):
         self.click_element(By.XPATH, f"//a[@title= '{name}]")

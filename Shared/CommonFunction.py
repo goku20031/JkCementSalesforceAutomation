@@ -37,7 +37,7 @@ class CommonFunction:
     def is_element_displayed(self, locator, element):
         return False
     
-    def add_days_to_today(days):
+    def add_days_to_today(self, days, time_frame= "%d-%m-%Y"):
         today = datetime.today().date()
         future_date = today + timedelta(days=days)
-        return future_date.strftime("%d-%m-%Y")
+        return future_date.strftime(time_frame)
