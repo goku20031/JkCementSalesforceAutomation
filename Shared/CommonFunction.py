@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotInteractableException
+from datetime import datetime, timedelta
 
 class CommonFunction:
 
@@ -16,11 +17,12 @@ class CommonFunction:
         ActionChains(self.driver).move_to_element(element_to_click).perform()
         element_to_click.click()
 
-    def type_element(self, locator, element, text):
+    def type_element(self, locator, element, text, clear= True):
         self.wait_element(locator, element)
         element_to_type = self.driver.find_element(locator, element)
         ActionChains(self.driver).move_to_element(element_to_type).perform()
-        element_to_type.clear()
+        if clear:
+            element_to_type.clear()
         element_to_type.send_keys(text)
 
     def wait_element(self, locator, element, timeout= 60):
@@ -34,3 +36,8 @@ class CommonFunction:
 
     def is_element_displayed(self, locator, element):
         return False
+    
+    def add_days_to_today(days):
+        today = datetime.today().date()
+        future_date = today + timedelta(days=days)
+        return future_date.strftime("%d-%m-%Y")
